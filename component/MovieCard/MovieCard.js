@@ -1,21 +1,21 @@
 import React from 'react';
-import {Text, Image, StyleSheet} from 'react-native';
-import {Header, Container, Content, Card, CardItem, Left, Body, Icon} from 'native-base';
+import {Text, Image, StyleSheet, View} from 'react-native';
+import {Content, CardItem, Left, Body, Icon} from 'native-base';
 
-const MovieCard = () => {
+const MovieCard = (props) => {
     return (
             <Content>
-                <Card style={{flex: 0}}>
+                <View style={{flex: 0}}>
                     <CardItem style={{backgroundColor: '#0b0b0e'}}>
                         <Left style={{flex: 0}}>
                             <Image
                                 style={styles.moviePoster}
-                                source={require('../../deadpool.jpg')}/>
+                                source={{uri: props.movie.url}}/>
                         </Left>
                         <Body style={styles.body}>
                             <Text>
-                                <Text style={styles.mainText}>DeadPool </Text>
-                                <Text style={styles.subText}>(2016)</Text>
+                                <Text style={styles.mainText}>{props.movie.title} </Text>
+                                <Text style={styles.subText}>({props.movie.release})</Text>
                             </Text>
                             <Text>
                                 <Icon style={styles.iconText} type="FontAwesome" name='star'/>
@@ -24,10 +24,10 @@ const MovieCard = () => {
                                 <Icon style={styles.iconText} type="FontAwesome" name='star'/>
                                 <Icon style={styles.iconText} type="FontAwesome" name='star'/>
                             </Text>
-                            <Text style={styles.subText}>Action, Comedy, Sci Fi</Text>
+                            <Text style={styles.subText}>{props.movie.genre}</Text>
                         </Body>
                     </CardItem>
-                </Card>
+                </View>
             </Content>
     );
 };
