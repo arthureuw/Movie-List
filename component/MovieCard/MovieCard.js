@@ -7,7 +7,7 @@ const MovieCard = (props) => {
             <Content>
                 <View style={{flex: 0}}>
                     <CardItem style={{backgroundColor: '#0b0b0e'}}>
-                        <Left style={{flex: 0}}>
+                        <Left style={{flex: 0.4}}>
                             <Image
                                 style={styles.moviePoster}
                                 source={{uri: props.movie.url}}/>
@@ -36,7 +36,6 @@ export default MovieCard;
 
 const styles = StyleSheet.create({
     body: {
-        marginLeft: 10,
       justifyContent: 'center',
     },
     moviePoster: {
