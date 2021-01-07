@@ -4,8 +4,6 @@ import {Header, Container, Content, Card, CardItem, Left, Body, Icon} from 'nati
 
 const MovieCard = () => {
     return (
-        <Container style={{flex: 1}}>
-            <Header/>
             <Content>
                 <Card style={{flex: 0}}>
                     <CardItem style={{backgroundColor: '#0b0b0e'}}>
@@ -31,7 +29,6 @@ const MovieCard = () => {
                     </CardItem>
                 </Card>
             </Content>
-        </Container>
     );
 };
 
