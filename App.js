@@ -5,6 +5,9 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import HomePage from './component/HomePage/HomePage';
+import MovieDetails from './component/MovieDetails/MovieDetails';
+
+const Stack = createStackNavigator();
 
 const App = () => {
   return (
@@ -12,7 +15,13 @@ const App = () => {
       <StatusBar barStyle="light-content" />
       <SafeAreaView style={styles.mainColor}>
         <View style={{height: '100%', backgroundColor: '#0b0b0e'}}>
-          <HomePage />
+          <Stack.Navigator
+            screenOptions={{
+              headerShown: false,
+            }}>
+            <Stack.Screen name="Home" component={HomePage} />
+            <Stack.Screen name="MovieDetails" component={MovieDetails} />
+          </Stack.Navigator>
         </View>
       </SafeAreaView>
     </NavigationContainer>

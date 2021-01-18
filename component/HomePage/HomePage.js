@@ -1,32 +1,17 @@
 import {
-  SafeAreaView,
   ScrollView,
   View,
   FlatList,
   TouchableOpacity,
-  StatusBar,
   StyleSheet,
 } from 'react-native';
-import {
-  Button,
-  Icon,
-  Text,
-  Footer,
-  FooterTab,
-  Right,
-  Header,
-  Left,
-  SwipeRow,
-  Container,
-  Content,
-  List,
-} from 'native-base';
+import {Button, Icon, Text, SwipeRow, Content} from 'native-base';
 import React from 'react';
 
 import TopPick from '../TopPick/TopPick';
 import MovieCard from '../MovieCard/MovieCard';
 
-const HomePage = () => {
+const HomePage = ({navigation}) => {
   const movieArray = [
     {
       id: 0,
@@ -47,8 +32,8 @@ const HomePage = () => {
   ];
 
   return (
-    <Content scrollEnabled={false}>
-      <View style={{flex: 0.8}}>
+    <Content scrollEnabled={false} style={{backgroundColor: '#0b0b0e'}}>
+      <View style={{backgroundColor: '#0b0b0e'}}>
         <TopPick />
         <Text style={styles.mainText}>Suggested for you</Text>
       </View>
@@ -67,7 +52,9 @@ const HomePage = () => {
               disableRightSwipe={true}
               body={
                 <TouchableOpacity
-                  // onPress={() => navigation.navigate('MovieDetails', {movie: item})}
+                  onPress={() =>
+                    navigation.navigate('MovieDetails', {movie: item})
+                  }
                   style={{flex: 1}}>
                   <MovieCard movie={movieArray[item.id]} />
                 </TouchableOpacity>
