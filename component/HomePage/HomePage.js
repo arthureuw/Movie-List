@@ -139,7 +139,7 @@ const HomePage = ({navigation}) => {
         <TopPick />
         <Text style={styles.mainText}>Suggested for you</Text>
       </View>
-      {/*<ScrollView*/}
+      {/*<ScrollView lol*/}
       {/*  style={styles.bottom}*/}
       {/*  contentInsetAdjustmentBehavior="automatic">*/}
       <FlatList
