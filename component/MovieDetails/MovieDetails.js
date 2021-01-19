@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
 import {Image, Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 
+import MovieCasting from '../MovieCasting/MovieCasting';
+
 const MovieDetails = ({navigation, route}) => {
   const [movie, setMovie] = useState(route.params.movie);
 
   const overviewReducer = (overview) => {
-    if (overview.length > 213) {
+    if (overview.length > 214) {
       return overview.slice(0, 214).concat('...');
     }
     return overview;
@@ -41,6 +43,9 @@ const MovieDetails = ({navigation, route}) => {
           <Text style={styles.mainText}>Overview</Text>
         </TouchableOpacity>
         <Text style={styles.subText}>{overviewReducer(movie.overview)}</Text>
+      </View>
+      <View style={{flex: 1}}>
+        <MovieCasting actors={movie.actors} />
       </View>
     </View>
   );
