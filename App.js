@@ -1,8 +1,9 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import {SafeAreaView, View, StatusBar, StyleSheet} from 'react-native';
+import {View, StatusBar, StyleSheet} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 import HomePage from './component/HomePage/HomePage';
 import MovieDetails from './component/MovieDetails/MovieDetails';
@@ -13,7 +14,7 @@ const App = () => {
   return (
     <NavigationContainer>
       <StatusBar barStyle="light-content" />
-      <SafeAreaView style={styles.mainColor}>
+      <SafeAreaProvider style={styles.mainColor}>
         <View style={{height: '100%', backgroundColor: '#0b0b0e'}}>
           <Stack.Navigator
             screenOptions={{
@@ -23,7 +24,7 @@ const App = () => {
             <Stack.Screen name="MovieDetails" component={MovieDetails} />
           </Stack.Navigator>
         </View>
-      </SafeAreaView>
+      </SafeAreaProvider>
     </NavigationContainer>
   );
 };

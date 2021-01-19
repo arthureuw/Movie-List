@@ -1,30 +1,6 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  View,
-  FlatList,
-  TouchableOpacity,
-  StatusBar,
-  StyleSheet,
-  Image,
-} from 'react-native';
-import {
-  Button,
-  Icon,
-  Text,
-  Footer,
-  FooterTab,
-  Right,
-  Header,
-  Left,
-  SwipeRow,
-  Container,
-  Content,
-  List,
-  Body,
-  CardItem,
-} from 'native-base';
+import {View, StyleSheet, Image} from 'react-native';
+import {Icon, Text, Left, Content, Body, CardItem} from 'native-base';
 
 const TopPick = () => {
   const topPick = {
