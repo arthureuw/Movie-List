@@ -18,18 +18,22 @@ const MovieDetails = ({navigation, route}) => {
       <Image
         style={styles.backgroundPoster}
         source={{
-          uri: movie.url,
+          uri: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
         }}
       />
-      <Image style={styles.moviePoster} source={{uri: movie.url}} />
+      <Image
+        style={styles.moviePoster}
+        source={{uri: `https://image.tmdb.org/t/p/w500${movie.poster_path}`}}
+      />
       <View style={styles.textPlacement}>
         <Text style={styles.mainText}>
-          {movie.title} <Text style={styles.subText}>({movie.release})</Text>
+          {movie.title}{' '}
+          <Text style={styles.subText}>({movie.release_date.slice(0, 4)})</Text>
         </Text>
       </View>
       <View style={styles.textBox}>
         <Text style={styles.secondText}>76% - User Score</Text>
-        <Text style={styles.secondText}> Hello ! </Text>
+        <Text style={styles.secondText}> Play Trailer </Text>
       </View>
       <View
         style={{
@@ -45,7 +49,7 @@ const MovieDetails = ({navigation, route}) => {
         <Text style={styles.subText}>{overviewReducer(movie.overview)}</Text>
       </View>
       <View style={{flex: 1}}>
-        <MovieCasting actors={movie.actors} />
+        {/*<MovieCasting actors={movie.actors} />*/}
       </View>
     </View>
   );

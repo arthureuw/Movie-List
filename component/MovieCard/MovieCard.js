@@ -8,12 +8,19 @@ const MovieCard = (props) => {
       <View style={{flex: 0}}>
         <CardItem style={{backgroundColor: '#0b0b0e'}}>
           <Left style={{flex: 0.4}}>
-            <Image style={styles.moviePoster} source={{uri: props.movie.url}} />
+            <Image
+              style={styles.moviePoster}
+              source={{
+                uri: `https://image.tmdb.org/t/p/w500${props.movie.poster_path}`,
+              }}
+            />
           </Left>
           <Body style={styles.body}>
             <Text>
               <Text style={styles.mainText}>{props.movie.title} </Text>
-              <Text style={styles.subText}>({props.movie.release})</Text>
+              <Text style={styles.subText}>
+                ({props.movie.release_date.slice(0, 4)})
+              </Text>
             </Text>
             <Text>
               <Icon style={styles.iconText} type="FontAwesome" name="star" />
@@ -22,7 +29,7 @@ const MovieCard = (props) => {
               <Icon style={styles.iconText} type="FontAwesome" name="star" />
               <Icon style={styles.iconText} type="FontAwesome" name="star" />
             </Text>
-            <Text style={styles.subText}>{props.movie.genre}</Text>
+            <Text style={styles.subText}>{props.movie.genre_ids}</Text>
           </Body>
         </CardItem>
       </View>
