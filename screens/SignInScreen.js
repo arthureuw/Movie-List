@@ -2,7 +2,7 @@ import { inject, observer } from 'mobx-react';
 import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 
-const LoginHandle = (props) => {
+const SignInScreenHandle = (props) => {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <TextInput
@@ -36,5 +36,5 @@ const styles = StyleSheet.create({
   },
 });
 
-const Login = inject('loginStore')(observer(LoginHandle));
-export default Login;
+const SignInScreen = inject('loginStore')(observer(SignInScreenHandle));
+export default SignInScreen;
