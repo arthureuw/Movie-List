@@ -28,7 +28,6 @@ const TopPick = (props) => {
               <Icon style={styles.iconText} type="FontAwesome" name="star" />
               <Icon style={styles.iconText} type="FontAwesome" name="star" />
             </Text>
-            <Text style={styles.subText}>{props.topPick.genre_ids}</Text>
           </Body>
         </CardItem>
       </View>
@@ -48,16 +47,16 @@ const styles = StyleSheet.create({
     height: 256,
     borderRadius: 8,
   },
-  mainText: {
-    fontWeight: 'bold',
-    fontSize: 20,
-    color: 'white',
-  },
   mainTitle: {
     fontWeight: 'bold',
     fontSize: 20,
     color: 'white',
     margin: 15,
+  },
+  mainText: {
+    fontWeight: 'bold',
+    fontSize: 20,
+    color: 'white',
   },
   subText: {
     fontWeight: '300',
@@ -71,5 +70,6 @@ const styles = StyleSheet.create({
   },
   spacingText: {
     paddingBottom: 8,
+    width: 200,
   },
 });

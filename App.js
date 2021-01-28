@@ -7,6 +7,7 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 import HomePage from './component/HomePage/HomePage';
 import MovieDetails from './component/MovieDetails/MovieDetails';
+import WatchList from './component/WatchList/WatchList';
 
 const Stack = createStackNavigator();
 
@@ -22,6 +23,7 @@ const App = () => {
             }}>
             <Stack.Screen name="Home" component={HomePage} />
             <Stack.Screen name="MovieDetails" component={MovieDetails} />
+            <Stack.Screen name="WatchList" component={WatchList} />
           </Stack.Navigator>
         </View>
       </SafeAreaProvider>

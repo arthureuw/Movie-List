@@ -49,7 +49,7 @@ const MovieDetails = ({navigation, route}) => {
         <Text style={styles.subText}>{overviewReducer(movie.overview)}</Text>
       </View>
       <View style={{flex: 1}}>
-        {/*<MovieCasting actors={movie.actors} />*/}
+        <MovieCasting movieId={movie.id} />
       </View>
     </View>
   );
