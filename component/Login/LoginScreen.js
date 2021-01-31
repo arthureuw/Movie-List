@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, StyleSheet, Button } from 'react-native'
-import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
+import { View, Text, StyleSheet, Button, TouchableOpacity } from 'react-native'
+import { TextInput } from 'react-native-gesture-handler';
 import { GetRequestToken, ValidateAuthentication, CreateNewSession, GetUserAccount } from "../../service/Auth";
 import { inject, observer, Provider } from 'mobx-react';
 import { loginStore } from "../../stores/LoginStore.store"
@@ -11,29 +11,30 @@ const LoginScreen = ({navigation}) => {
 
     return (
         <Provider {...stores}>
-            <Login></Login>
+            <Login navigation={navigation}></Login>
         </Provider>
     )
 };
 
-export default LoginScreen;
+
 
 const LoginHandling = (props) => {
-    const { loginStore } = props;
+    const { loginStore, navigation } = props;
     const [reqToken, setReqToken] = useState('');
     const SignIn = async () => {
-        await ValidateAuthentication(reqToken, loginStore.user.username, loginStore.user.password)
+        ValidateAuthentication(reqToken, loginStore.user.username, loginStore.user.password)
             .then(r => CreateNewSession(reqToken)
                 .then(r => {
                     loginStore.user.session_id = r.data.session_id,
                         GetUserAccount(r.data.session_id)
-                            .then(r => { loginStore.signUserInOut(true)})
+                            .then(r => { loginStore.signUserInOut(true), navigation.navigate('Home')})
                             .catch(err => console.error(err))
                 })
                 .catch(err => console.error(err)))
             .catch(err => console.error(err))
 
     }
+
     useEffect(() => {
         const _retrieveData = async () => {
             try {
@@ -41,33 +42,29 @@ const LoginHandling = (props) => {
                 if (value !== null) {
                     loginStore.user = JSON.parse(value)
                 }
-
             } catch (error) {
                 console.error(error);
-
             }
-
         };
 
         _retrieveData()
     }, [])
 
     useEffect(() => {
-        console.log('tes')
-        // GetRequestToken().then(r => setReqToken(r.data.request_token))
+        GetRequestToken().then(r => setReqToken(r.data.request_token))
     }, [])
 
     return (
-        <View style={styles.container}>
-            <View style={styles.credentialContainer}>
+        <View>
+            <View>
                 <TextInput style={styles.input} maxLength={20} placeholder="Pseudo" value={loginStore.user.username} onChangeText={text => loginStore.user.username = text} />
                 <TextInput style={styles.input} maxLength={20} placeholder="Mot de Passe" value={loginStore.user.password} secureTextEntry={true} onChangeText={text => loginStore.user.password = text} />
-
-                <TouchableOpacity style={styles.button} title="LOGIN" onPress={() => SignIn()}><Text style={styles.buttonText}>Se Connecter</Text></TouchableOpacity>
+                <TouchableOpacity activeOpacity={0.75} title="LOGIN" onPress={() => SignIn()}><Text>Se Connecter</Text></TouchableOpacity>
             </View>
         </View>
     )
 }
+
 const Login = inject('loginStore')(observer(LoginHandling))
 
 const styles = StyleSheet.create({
@@ -97,10 +94,13 @@ const styles = StyleSheet.create({
     },
     button: {
         backgroundColor: '#ab47bc',
-        marginTop: 20
+        marginTop: 20,
+        zIndex: 5
     },
     buttonText: {
-        color: "white",
-        padding: 10
+        // color: "white",
+        // padding: 10
     }
 });
+
+export default LoginScreen;

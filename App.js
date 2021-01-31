@@ -10,7 +10,7 @@ import HomePage from './component/HomePage/HomePage';
 import MovieDetails from './component/MovieDetails/MovieDetails';
 import { configure } from 'mobx';
 
-configure({ enforceActions: "observed" })
+configure({ enforceActions: "never" })
 
 const Stack = createStackNavigator();
 
@@ -18,9 +18,19 @@ export default function App() {
   const stores = { loginStore}
   return (
       <Provider {...stores}>
-          <NavigationContainer>
-              <LoginScreen/>
-          </NavigationContainer>
+        <NavigationContainer>
+          <StatusBar barStyle="light-content" />
+            <View style={{height: '100%', backgroundColor: '#0b0b0e'}}>
+              <Stack.Navigator
+                screenOptions={{
+                  headerShown: false,
+                }}>
+                <Stack.Screen name="Login" component={LoginScreen} />
+                <Stack.Screen name="Home" component={HomePage} />
+                <Stack.Screen name="MovieDetails" component={MovieDetails} />
+              </Stack.Navigator>
+            </View>
+        </NavigationContainer>
       </Provider>
   );
 }
