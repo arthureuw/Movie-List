@@ -1,47 +1,22 @@
-import {View, FlatList, TouchableOpacity, StyleSheet} from 'react-native';
-import {Button, Icon, Text, SwipeRow, Content} from 'native-base';
 import React, {useEffect, useState} from 'react';
-
-import {getPopularMovieList} from '../../service/movieApi';
-
-import TopPick from '../TopPick/TopPick';
+import {Button, Icon, Text, SwipeRow, Content} from 'native-base';
+import {FlatList, StyleSheet, TouchableOpacity} from 'react-native';
 import MovieCard from '../MovieCard/MovieCard';
 
-const HomePage = ({navigation}) => {
-  const [popularMovie, setPopularMovie] = useState([{}]);
-  const [topPick, setTopPick] = useState({});
-  const [watchList, setWatchList] = useState([{}]);
-
-  const addToWatchList = (movie) => {
-    let tmpWatchList;
-    tmpWatchList = [...watchList, movie];
-    setWatchList(tmpWatchList);
-    console.log(watchList);
-  };
+const WatchList = ({navigation, route}) => {
+  const [toWatchMovie, settoWatchMovie] = useState(route.params.watchList);
 
   useEffect(() => {
-    getPopularMovieList().then((res) => {
-      setTopPick(res.data.results.shift());
-      setPopularMovie(res.data.results);
-    });
+    console.log(toWatchMovie);
   }, []);
 
   return (
     <Content scrollEnabled={false} style={{backgroundColor: '#0b0b0e'}}>
-      <View style={{backgroundColor: '#0b0b0e'}}>
-        <TouchableOpacity
-          onPress={() =>
-            navigation.navigate('WatchList', {watchList: watchList})
-          }>
-          <Text style={styles.mainText}>Favoris</Text>
-        </TouchableOpacity>
-        <TopPick topPick={topPick} />
-        <Text style={styles.mainText}>Suggested for you</Text>
-      </View>
+      <Text style={styles.mainText}> Welcome To Your WatchList</Text>
       <FlatList
         style={styles.bottom}
         scrollEnabled={true}
-        data={popularMovie}
+        data={toWatchMovie}
         keyExtractor={(item) => item.key}
         renderItem={({item}) => (
           <SwipeRow
@@ -63,7 +38,6 @@ const HomePage = ({navigation}) => {
                 <Icon
                   style={styles.heartIcon}
                   active
-                  onPress={() => addToWatchList(item)}
                   type="FontAwesome"
                   name="heart-o"
                 />
@@ -76,7 +50,7 @@ const HomePage = ({navigation}) => {
   );
 };
 
-export default HomePage;
+export default WatchList;
 
 const styles = StyleSheet.create({
   container: {
@@ -84,7 +58,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#0b0b0e',
   },
   bottom: {
-    height: 415,
+    flex: 1,
   },
   mainColor: {
     backgroundColor: '#0b0b0e',

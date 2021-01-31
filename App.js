@@ -9,8 +9,9 @@ import LoginScreen from './component/Login/LoginScreen';
 import HomePage from './component/HomePage/HomePage';
 import MovieDetails from './component/MovieDetails/MovieDetails';
 import { configure } from 'mobx';
-
 configure({ enforceActions: "never" })
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import WatchList from './component/WatchList/WatchList';
 
 const Stack = createStackNavigator();
 
@@ -20,6 +21,7 @@ export default function App() {
       <Provider {...stores}>
         <NavigationContainer>
           <StatusBar barStyle="light-content" />
+            <SafeAreaProvider style={styles.mainColor}>
             <View style={{height: '100%', backgroundColor: '#0b0b0e'}}>
               <Stack.Navigator
                 screenOptions={{
@@ -28,8 +30,10 @@ export default function App() {
                 <Stack.Screen name="Login" component={LoginScreen} />
                 <Stack.Screen name="Home" component={HomePage} />
                 <Stack.Screen name="MovieDetails" component={MovieDetails} />
+                <Stack.Screen name="WatchList" component={WatchList} />
               </Stack.Navigator>
             </View>
+          </SafeAreaProvider>
         </NavigationContainer>
       </Provider>
   );

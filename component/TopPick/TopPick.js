@@ -1,58 +1,25 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  View,
-  FlatList,
-  TouchableOpacity,
-  StatusBar,
-  StyleSheet,
-  Image,
-} from 'react-native';
-import {
-  Button,
-  Icon,
-  Text,
-  Footer,
-  FooterTab,
-  Right,
-  Header,
-  Left,
-  SwipeRow,
-  Container,
-  Content,
-  List,
-  Body,
-  CardItem,
-} from 'native-base';
+import {View, StyleSheet, Image} from 'react-native';
+import {Icon, Text, Left, Content, Body, CardItem} from 'native-base';
 
-const TopPick = () => {
-  const topPick = {
-    id: 0,
-    title: 'Venom',
-    release: '2018',
-    genre: 'Sci Fi, Action',
-    url: 'https://www.themoviedb.org/t/p/w1280/wdcc8n9BB5gO5Y7zIhHLSzxSTc6.jpg',
-  };
-
+const TopPick = (props) => {
   return (
     <Content style={{flexDirection: 'row', flex: 1}} scrollEnabled={false}>
-      <Text style={styles.mainTitle}>Top Pick by your watching list</Text>
+      <Text style={styles.mainTitle}>Top Pick Of The Week</Text>
       <View style={{flex: 0}}>
         <CardItem style={{backgroundColor: '#0b0b0e'}}>
           <Left style={{flex: 0.8}}>
             <Image
               style={styles.poster}
               source={{
-                uri:
-                  'https://www.themoviedb.org/t/p/w1280/wdcc8n9BB5gO5Y7zIhHLSzxSTc6.jpg',
+                uri: `https://image.tmdb.org/t/p/w500${props.topPick.poster_path}`,
               }}
             />
           </Left>
           <Body style={styles.body}>
             <Text style={styles.spacingText}>
-              <Text style={styles.mainText}>{topPick.title} </Text>
-              <Text style={styles.subText}>({topPick.release})</Text>
+              <Text style={styles.mainText}>{props.topPick.title} </Text>
+              <Text style={styles.subText}>({props.topPick.release_date})</Text>
             </Text>
             <Text style={styles.spacingText}>
               <Icon style={styles.iconText} type="FontAwesome" name="star" />
@@ -61,7 +28,6 @@ const TopPick = () => {
               <Icon style={styles.iconText} type="FontAwesome" name="star" />
               <Icon style={styles.iconText} type="FontAwesome" name="star" />
             </Text>
-            <Text style={styles.subText}>{topPick.genre}</Text>
           </Body>
         </CardItem>
       </View>
@@ -81,16 +47,16 @@ const styles = StyleSheet.create({
     height: 256,
     borderRadius: 8,
   },
-  mainText: {
-    fontWeight: 'bold',
-    fontSize: 20,
-    color: 'white',
-  },
   mainTitle: {
     fontWeight: 'bold',
     fontSize: 20,
     color: 'white',
     margin: 15,
+  },
+  mainText: {
+    fontWeight: 'bold',
+    fontSize: 20,
+    color: 'white',
   },
   subText: {
     fontWeight: '300',
@@ -104,5 +70,6 @@ const styles = StyleSheet.create({
   },
   spacingText: {
     paddingBottom: 8,
+    width: 200,
   },
 });
