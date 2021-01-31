@@ -23,7 +23,7 @@ class LoginStore {
     signUserInOut = flow(function* (bool) {
         try {
             this.user.isSignedIn = bool;
-            yield AsyncStorage.setItem('user', JSON.stringify(this.user));
+            yield AsyncStorage.setItem('username', JSON.stringify(this.user));
         } catch (err) {
             console.error(err);
         }
@@ -34,7 +34,7 @@ class LoginStore {
         reaction(
             () => [this.user.username, this.user.password],
             async () => {
-                await AsyncStorage.setItem('user', JSON.stringify(this.user));
+                await AsyncStorage.setItem('username', JSON.stringify(this.user));
             }
         );
     }

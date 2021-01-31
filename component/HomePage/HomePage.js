@@ -1,11 +1,9 @@
 import {View, FlatList, TouchableOpacity, StyleSheet} from 'react-native';
 import {Button, Icon, Text, SwipeRow, Content} from 'native-base';
 import React, {useEffect, useState} from 'react';
-
-import {getPopularMovieList} from '../../service/movieApi';
-
 import TopPick from '../TopPick/TopPick';
 import MovieCard from '../MovieCard/MovieCard';
+import {getPopularMovieList} from '../../service/movieApi';
 
 const HomePage = ({navigation}) => {
   const [popularMovie, setPopularMovie] = useState([{}]);
