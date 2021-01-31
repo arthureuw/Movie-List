@@ -10,6 +10,14 @@ import MovieCard from '../MovieCard/MovieCard';
 const HomePage = ({navigation}) => {
   const [popularMovie, setPopularMovie] = useState([{}]);
   const [topPick, setTopPick] = useState({});
+  const [watchList, setWatchList] = useState([{}]);
+
+  const addToWatchList = (movie) => {
+    let tmpWatchList;
+    tmpWatchList = [...watchList, movie];
+    setWatchList(tmpWatchList);
+    console.log(watchList);
+  };
 
   useEffect(() => {
     getPopularMovieList().then((res) => {
@@ -21,7 +29,10 @@ const HomePage = ({navigation}) => {
   return (
     <Content scrollEnabled={false} style={{backgroundColor: '#0b0b0e'}}>
       <View style={{backgroundColor: '#0b0b0e'}}>
-        <TouchableOpacity onPress={() => navigation.navigate('WatchList', {watchList: watchList})}>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate('WatchList', {watchList: watchList})
+          }>
           <Text style={styles.mainText}>Favoris</Text>
         </TouchableOpacity>
         <TopPick topPick={topPick} />
@@ -52,6 +63,7 @@ const HomePage = ({navigation}) => {
                 <Icon
                   style={styles.heartIcon}
                   active
+                  onPress={() => addToWatchList(item)}
                   type="FontAwesome"
                   name="heart-o"
                 />

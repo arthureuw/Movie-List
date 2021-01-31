@@ -3,16 +3,20 @@ import {Button, Icon, Text, SwipeRow, Content} from 'native-base';
 import {FlatList, StyleSheet, TouchableOpacity} from 'react-native';
 import MovieCard from '../MovieCard/MovieCard';
 
-const WatchList = ({route}) => {
-  const [toWatchMovie, settoWatchMovie] = useState(route.params.movie);
+const WatchList = ({navigation, route}) => {
+  const [toWatchMovie, settoWatchMovie] = useState(route.params.watchList);
+
+  useEffect(() => {
+    console.log(toWatchMovie);
+  }, []);
 
   return (
-    <Content style={{backgroundColor: '#0b0b0e'}}>
+    <Content scrollEnabled={false} style={{backgroundColor: '#0b0b0e'}}>
       <Text style={styles.mainText}> Welcome To Your WatchList</Text>
       <FlatList
         style={styles.bottom}
         scrollEnabled={true}
-        data={toWatch}
+        data={toWatchMovie}
         keyExtractor={(item) => item.key}
         renderItem={({item}) => (
           <SwipeRow
@@ -54,7 +58,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#0b0b0e',
   },
   bottom: {
-    height: 415,
+    flex: 1,
   },
   mainColor: {
     backgroundColor: '#0b0b0e',
